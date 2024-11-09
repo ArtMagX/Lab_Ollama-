@@ -48,13 +48,16 @@ public class AllayBot extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         ChatHistory = new javax.swing.JList<>();
-        NuevoChat = new javax.swing.JButton();
+        NuevoChat1 = new javax.swing.JButton();
+        MostrarHistorial = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         InputText = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         Dialogos = new javax.swing.JTextArea();
         EnviarButton = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
+        LimpiarChat = new javax.swing.JButton();
+        LimpiarChat1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -81,10 +84,17 @@ public class AllayBot extends javax.swing.JFrame {
         });
         jScrollPane2.setViewportView(ChatHistory);
 
-        NuevoChat.setText("Nuevo Chat");
-        NuevoChat.addMouseListener(new java.awt.event.MouseAdapter() {
+        NuevoChat1.setText("Nuevo Chat");
+        NuevoChat1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                NuevoChatMouseClicked(evt);
+                NuevoChat1MouseClicked(evt);
+            }
+        });
+
+        MostrarHistorial.setText("Ocultar historial");
+        MostrarHistorial.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                MostrarHistorialMouseClicked(evt);
             }
         });
 
@@ -95,17 +105,20 @@ public class AllayBot extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane2)
-                    .addComponent(NuevoChat, javax.swing.GroupLayout.DEFAULT_SIZE, 220, Short.MAX_VALUE))
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 220, Short.MAX_VALUE)
+                    .addComponent(NuevoChat1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(MostrarHistorial, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 508, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 450, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(NuevoChat, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(MostrarHistorial, javax.swing.GroupLayout.DEFAULT_SIZE, 52, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(NuevoChat1, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
@@ -148,13 +161,22 @@ public class AllayBot extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
+        LimpiarChat.setText("Limpiar Chat");
+        LimpiarChat.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                LimpiarChatMouseClicked(evt);
+            }
+        });
+
+        LimpiarChat1.setText("Limpiar Chat");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -164,27 +186,43 @@ public class AllayBot extends javax.swing.JFrame {
                         .addGap(2, 2, 2)
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel3)))
-                .addContainerGap(37, Short.MAX_VALUE))
+                        .addComponent(jLabel3)
+                        .addGap(763, 763, 763)
+                        .addComponent(LimpiarChat)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(0, 455, Short.MAX_VALUE)
+                    .addComponent(LimpiarChat1)
+                    .addGap(0, 456, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel1)
-                            .addComponent(jLabel3))
-                        .addGap(15, 15, 15))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(20, 20, 20)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jLabel1)
+                                    .addComponent(jLabel3)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(33, 33, 33)
+                                .addComponent(jLabel5)))
+                        .addGap(18, 18, 18))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jLabel5)
-                        .addGap(18, 18, 18)))
+                        .addComponent(LimpiarChat, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(8, 8, 8)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(LimpiarChat1)
+                    .addGap(0, 0, Short.MAX_VALUE)))
         );
 
         pack();
@@ -196,13 +234,6 @@ public class AllayBot extends javax.swing.JFrame {
         enviarSolicitudIA();
     }//GEN-LAST:event_EnviarButtonMouseClicked
 
-    private void NuevoChatMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_NuevoChatMouseClicked
-        String chatContent = Dialogos.getText();
-        guardarChat(chatContent);
-        Dialogos.setText("");
-        cargarChats();
-    }//GEN-LAST:event_NuevoChatMouseClicked
-
     private void ChatHistoryMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ChatHistoryMouseClicked
         if (evt.getClickCount() == 2) {
             int index = ChatHistory.locationToIndex(evt.getPoint());
@@ -212,6 +243,31 @@ public class AllayBot extends javax.swing.JFrame {
             }
         }
     }//GEN-LAST:event_ChatHistoryMouseClicked
+
+    private void NuevoChat1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_NuevoChat1MouseClicked
+        // TODO add your handling code here:
+        String chatContent = Dialogos.getText();
+        guardarChat(chatContent);
+        Dialogos.setText("");
+        cargarChats();
+    }//GEN-LAST:event_NuevoChat1MouseClicked
+
+    private void MostrarHistorialMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MostrarHistorialMouseClicked
+        // TODO add your handling code here:
+         if (ChatHistory.isVisible()) {
+            MostrarHistorial.setText("Mostrar Historial");
+            ChatHistory.setVisible(false);
+        } else {
+            MostrarHistorial.setText("Ocultar Historial");
+            ChatHistory.setVisible(true);
+        }
+        
+    }//GEN-LAST:event_MostrarHistorialMouseClicked
+
+    private void LimpiarChatMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_LimpiarChatMouseClicked
+        // TODO add your handling code here:
+        Dialogos.setText("");
+    }//GEN-LAST:event_LimpiarChatMouseClicked
 
     /**
      * @param args the command line arguments
@@ -350,7 +406,10 @@ public class AllayBot extends javax.swing.JFrame {
     private javax.swing.JTextArea Dialogos;
     private javax.swing.JButton EnviarButton;
     private javax.swing.JTextField InputText;
-    private javax.swing.JButton NuevoChat;
+    private javax.swing.JButton LimpiarChat;
+    private javax.swing.JButton LimpiarChat1;
+    private javax.swing.JButton MostrarHistorial;
+    private javax.swing.JButton NuevoChat1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel5;
