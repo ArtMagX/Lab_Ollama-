@@ -384,8 +384,10 @@ public class AllayBot extends javax.swing.JFrame {
             conn.disconnect();
 
         } catch (MalformedURLException e) {
+            Dialogos.append("[Allay ERRROR] La url no ha dado respuesta: " + e.getMessage() + "\n");
             System.out.println("La URL es inválida: " + e.getMessage());
         } catch (IOException e) {
+            Dialogos.append("[Allay ERRROR] Error de conexion con allay: " + e.getMessage() + "\n");
             System.out.println("Error de conexión: " + e.getMessage());
         }
     }
