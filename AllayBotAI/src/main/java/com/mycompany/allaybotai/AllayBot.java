@@ -4,6 +4,8 @@
  */
 package com.mycompany.allaybotai;
 
+import java.awt.Color;
+import java.awt.event.KeyEvent;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileWriter;
@@ -48,7 +50,7 @@ public class AllayBot extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         ChatHistory = new javax.swing.JList<>();
-        NuevoChat1 = new javax.swing.JButton();
+        NuevoChat = new javax.swing.JButton();
         MostrarHistorial = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         InputText = new javax.swing.JTextField();
@@ -57,7 +59,7 @@ public class AllayBot extends javax.swing.JFrame {
         EnviarButton = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
         LimpiarChat = new javax.swing.JButton();
-        LimpiarChat1 = new javax.swing.JButton();
+        Indicador = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -84,14 +86,14 @@ public class AllayBot extends javax.swing.JFrame {
         });
         jScrollPane2.setViewportView(ChatHistory);
 
-        NuevoChat1.setText("Nuevo Chat");
-        NuevoChat1.addMouseListener(new java.awt.event.MouseAdapter() {
+        NuevoChat.setText("Nuevo Chat");
+        NuevoChat.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                NuevoChat1MouseClicked(evt);
+                NuevoChatMouseClicked(evt);
             }
         });
 
-        MostrarHistorial.setText("Ocultar historial");
+        MostrarHistorial.setText("Ocultar Historial");
         MostrarHistorial.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 MostrarHistorialMouseClicked(evt);
@@ -105,24 +107,30 @@ public class AllayBot extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 220, Short.MAX_VALUE)
-                    .addComponent(NuevoChat1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(MostrarHistorial, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jScrollPane2)
+                    .addComponent(NuevoChat, javax.swing.GroupLayout.DEFAULT_SIZE, 220, Short.MAX_VALUE)
+                    .addComponent(MostrarHistorial, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 220, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 450, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 455, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(MostrarHistorial, javax.swing.GroupLayout.DEFAULT_SIZE, 52, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(NuevoChat1, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(MostrarHistorial, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(NuevoChat, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
         jPanel2.setBackground(new java.awt.Color(40, 40, 40));
+
+        InputText.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                InputTextKeyPressed(evt);
+            }
+        });
 
         Dialogos.setColumns(20);
         Dialogos.setRows(5);
@@ -141,13 +149,11 @@ public class AllayBot extends javax.swing.JFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(InputText, javax.swing.GroupLayout.PREFERRED_SIZE, 667, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(EnviarButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addComponent(InputText, javax.swing.GroupLayout.PREFERRED_SIZE, 667, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(EnviarButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING)
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -168,15 +174,17 @@ public class AllayBot extends javax.swing.JFrame {
             }
         });
 
-        LimpiarChat1.setText("Limpiar Chat");
+        Indicador.setForeground(new java.awt.Color(241, 241, 241));
+        Indicador.setText("Allay 3.2");
+        Indicador.setToolTipText("Estas usando la version 3.2 de Allay");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -187,45 +195,36 @@ public class AllayBot extends javax.swing.JFrame {
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel3)
-                        .addGap(763, 763, 763)
-                        .addComponent(LimpiarChat)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(0, 455, Short.MAX_VALUE)
-                    .addComponent(LimpiarChat1)
-                    .addGap(0, 456, Short.MAX_VALUE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(Indicador)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(LimpiarChat)
+                        .addContainerGap())))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(20, 20, 20)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jLabel1)
-                                    .addComponent(jLabel3)))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(33, 33, 33)
-                                .addComponent(jLabel5)))
-                        .addGap(18, 18, 18))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(LimpiarChat, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(8, 8, 8)))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel1)
+                            .addComponent(jLabel3)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(57, 57, 57)
+                        .addComponent(jLabel5))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(LimpiarChat, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(Indicador, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(LimpiarChat1)
-                    .addGap(0, 0, Short.MAX_VALUE)))
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void EnviarButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_EnviarButtonMouseClicked
@@ -233,6 +232,13 @@ public class AllayBot extends javax.swing.JFrame {
         Dialogos.append("[Yo] Tu: " + promptText + "\n");
         enviarSolicitudIA();
     }//GEN-LAST:event_EnviarButtonMouseClicked
+
+    private void NuevoChatMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_NuevoChatMouseClicked
+        String chatContent = Dialogos.getText();
+        guardarChat(chatContent);
+        Dialogos.setText("");
+        cargarChats();
+    }//GEN-LAST:event_NuevoChatMouseClicked
 
     private void ChatHistoryMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ChatHistoryMouseClicked
         if (evt.getClickCount() == 2) {
@@ -244,30 +250,27 @@ public class AllayBot extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_ChatHistoryMouseClicked
 
-    private void NuevoChat1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_NuevoChat1MouseClicked
-        // TODO add your handling code here:
-        String chatContent = Dialogos.getText();
-        guardarChat(chatContent);
+    private void LimpiarChatMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_LimpiarChatMouseClicked
         Dialogos.setText("");
-        cargarChats();
-    }//GEN-LAST:event_NuevoChat1MouseClicked
+    }//GEN-LAST:event_LimpiarChatMouseClicked
 
     private void MostrarHistorialMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MostrarHistorialMouseClicked
-        // TODO add your handling code here:
-         if (ChatHistory.isVisible()) {
+        if (ChatHistory.isVisible()) {
             MostrarHistorial.setText("Mostrar Historial");
             ChatHistory.setVisible(false);
         } else {
             MostrarHistorial.setText("Ocultar Historial");
             ChatHistory.setVisible(true);
         }
-        
     }//GEN-LAST:event_MostrarHistorialMouseClicked
 
-    private void LimpiarChatMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_LimpiarChatMouseClicked
-        // TODO add your handling code here:
-        Dialogos.setText("");
-    }//GEN-LAST:event_LimpiarChatMouseClicked
+    private void InputTextKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_InputTextKeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            String promptText = InputText.getText();
+            Dialogos.append("[Yo] Tu: " + promptText + "\n");
+            enviarSolicitudIA();
+        }
+    }//GEN-LAST:event_InputTextKeyPressed
 
     /**
      * @param args the command line arguments
@@ -304,11 +307,27 @@ public class AllayBot extends javax.swing.JFrame {
         });
     }
 
+    public static void wait(int ms) {
+        try {
+            Thread.sleep(ms);
+        } catch (InterruptedException ex) {
+            Thread.currentThread().interrupt();
+        }
+    }
+
     private void cargarChat(String chatName) {
         try {
             String filePath = chatDirectory + chatName;
+
             String content = new String(Files.readAllBytes(Paths.get(filePath)), StandardCharsets.UTF_8);
-            Dialogos.setText(content);
+            String[] lineasChat = content.split("\n");
+
+            StringBuilder chatTexto = new StringBuilder();
+            for (String linea : lineasChat) {
+                chatTexto.append(linea).append("\n");
+            }
+
+            Dialogos.setText(chatTexto.toString());
         } catch (IOException e) {
             JOptionPane.showMessageDialog(this, "Error al cargar el chat: " + e.getMessage());
         }
@@ -317,7 +336,10 @@ public class AllayBot extends javax.swing.JFrame {
     private void enviarSolicitudIA() {
         //variables para el modelo
         String nombremodelo = "llama3.2";
-        String promptText = InputText.getText();
+        String texto = InputText.getText();
+        //Evitar crahseos cuando se manda un mensaje con comillas ""
+        texto = texto.replace("\"", "´").replace("\"", "´").replace("'", "´").replace("'", "´");
+        String promptText = texto;
 
         try {
             URL url = new URL("http://localhost:11434/api/generate");
@@ -355,6 +377,7 @@ public class AllayBot extends javax.swing.JFrame {
                 JSONObject jsonResponse = new JSONObject(response.toString());
                 String responseText = jsonResponse.getString("response");
                 Dialogos.append("[AI] Allay Bot: " + responseText + "\n");
+                InputText.setText("");
             }
 
             //cerrar la conexión
@@ -371,9 +394,25 @@ public class AllayBot extends javax.swing.JFrame {
 
     private void guardarChat(String contenido) {
         try {
+            // El contenido sera para cada linea
+            String[] lineas = contenido.split("\n");
+
+            // Crear la matriz
+            Object[][] matrizDeChat = new Object[lineas.length][1];
+
+            for (int i = 0; i < lineas.length; i++) {
+                matrizDeChat[i][0] = lineas[i];
+            }
+
+            // Nombre del archivo con la extension de allay porque aja
             String fileName = chatDirectory + "chat_" + System.currentTimeMillis() + ".allay";
             FileWriter writer = new FileWriter(fileName);
-            writer.write(contenido);
+
+            // Guardar en el archivo
+            for (Object[] fila : matrizDeChat) {
+                writer.write(fila[0] + "\n");
+            }
+
             writer.close();
         } catch (IOException e) {
             JOptionPane.showMessageDialog(this, "Error al guardar el chat: " + e.getMessage());
@@ -381,23 +420,34 @@ public class AllayBot extends javax.swing.JFrame {
     }
 
     private void cargarChats() {
-        DefaultListModel<String> model = new DefaultListModel<>();
         File dir = new File(chatDirectory);
 
-        // Filtrar archivos .allay
-        File[] chats = dir.listFiles(new FilenameFilter() {
-            @Override
-            public boolean accept(File dir, String name) {
-                return name.endsWith(".allay");
-            }
-        });
-
-        if (chats != null) {
-            for (File chat : chats) {
-                model.addElement(chat.getName());
-            }
+        if (!dir.exists() || !dir.isDirectory()) {
+            JOptionPane.showMessageDialog(this, "Directorio de chats no encontrado.");
+            return;
         }
-        ChatHistory.setModel(model);
+
+        File[] chats = dir.listFiles((dir1, name) -> name.endsWith(".allay"));
+
+        if (chats != null && chats.length > 0) {
+            // Crear la matriz
+            Object[][] matrizChats = new Object[chats.length][2];
+
+            // Llenar la matriz
+            for (int i = 0; i < chats.length; i++) {
+                matrizChats[i][0] = i + 1;
+                matrizChats[i][1] = chats[i].getName();
+            }
+
+            DefaultListModel<String> model = new DefaultListModel<>();
+            for (Object[] fila : matrizChats) {
+                model.addElement(fila[1].toString());
+            }
+            ChatHistory.setModel(model);
+
+        } else {
+            JOptionPane.showMessageDialog(this, "No se encontraron archivos de chat.");
+        }
     }
 
 
@@ -405,11 +455,11 @@ public class AllayBot extends javax.swing.JFrame {
     private javax.swing.JList<String> ChatHistory;
     private javax.swing.JTextArea Dialogos;
     private javax.swing.JButton EnviarButton;
+    private javax.swing.JLabel Indicador;
     private javax.swing.JTextField InputText;
     private javax.swing.JButton LimpiarChat;
-    private javax.swing.JButton LimpiarChat1;
     private javax.swing.JButton MostrarHistorial;
-    private javax.swing.JButton NuevoChat1;
+    private javax.swing.JButton NuevoChat;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel5;
