@@ -80,7 +80,10 @@ public class AllayBotAI {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        AllayBot allay = new AllayBot();
-        allay.setVisible(true);
+        
+        MenuInicio frame = new MenuInicio();
+        frame.setVisible(true);
+        
+        
     }
 }
