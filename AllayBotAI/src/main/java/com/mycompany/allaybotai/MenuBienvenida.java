@@ -63,6 +63,11 @@ public class MenuBienvenida extends javax.swing.JFrame {
         BttnCreditos.setForeground(new java.awt.Color(0, 0, 0));
         BttnCreditos.setText("Creditos");
         BttnCreditos.setBorder(null);
+        BttnCreditos.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                BttnCreditosMouseClicked(evt);
+            }
+        });
         jPanel1.add(BttnCreditos, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 440, 90, 30));
 
         BttnJugar.setBackground(new java.awt.Color(231, 203, 152));
@@ -103,14 +108,20 @@ public class MenuBienvenida extends javax.swing.JFrame {
     }//GEN-LAST:event_BttnSalirMouseClicked
 
     private void BttnJugarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BttnJugarMouseClicked
-        
+        Juego juegote = new Juego();
+        juegote.setVisible(true);        
     }//GEN-LAST:event_BttnJugarMouseClicked
 
     private void BttnJugarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BttnJugarActionPerformed
-        Juego juegote = new Juego();
-        juegote.setVisible(true);
-        this.setVisible(false);
+
+        
     }//GEN-LAST:event_BttnJugarActionPerformed
+
+    private void BttnCreditosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BttnCreditosMouseClicked
+        Creditos credito = new Creditos();
+        credito.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_BttnCreditosMouseClicked
 
     /**
      * @param args the command line arguments

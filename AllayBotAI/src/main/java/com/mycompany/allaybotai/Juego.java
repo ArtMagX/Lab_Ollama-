@@ -102,7 +102,6 @@ public class Juego extends javax.swing.JFrame {
         });
 
         jLabel4.setFont(new java.awt.Font("sansserif", 1, 14)); // NOI18N
-        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mycompany/allaybotai/Hopstarter-Button-Button-Close.16.png"))); // NOI18N
         jLabel4.setText("Regresar");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
