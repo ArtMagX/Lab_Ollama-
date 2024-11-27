@@ -81,8 +81,8 @@ public class AllayBotAI {
             e.printStackTrace();
         }
         
-        MenuInicio frame = new MenuInicio();
-        frame.setVisible(true);
+        MenuBienvenida Jframe = new MenuBienvenida();
+        Jframe.setVisible(true);
         
         
     }
