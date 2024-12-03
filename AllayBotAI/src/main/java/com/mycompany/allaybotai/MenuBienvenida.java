@@ -20,6 +20,7 @@ public class MenuBienvenida extends javax.swing.JFrame {
     
     public MenuBienvenida() {
         initComponents();
+        setIconImage(new ImageIcon(getClass().getResource("/images/tesoro1_icon.png")).getImage());
         
     }
 
@@ -40,15 +41,17 @@ public class MenuBienvenida extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("AllayQuest");
 
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("Rockwell Condensed", 3, 24)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel1.setForeground(new java.awt.Color(51, 51, 51));
         jLabel1.setText("AllayQuest: ¡Busqueda de Tesoros!");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 80, 370, -1));
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 70, 400, -1));
 
         BttnSalir.setBackground(new java.awt.Color(250, 162, 117));
+        BttnSalir.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         BttnSalir.setForeground(new java.awt.Color(0, 0, 0));
         BttnSalir.setText("Salir");
         BttnSalir.setBorder(null);
@@ -60,6 +63,7 @@ public class MenuBienvenida extends javax.swing.JFrame {
         jPanel1.add(BttnSalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 360, 90, 30));
 
         BttnCreditos.setBackground(new java.awt.Color(198, 207, 187));
+        BttnCreditos.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         BttnCreditos.setForeground(new java.awt.Color(0, 0, 0));
         BttnCreditos.setText("Creditos");
         BttnCreditos.setBorder(null);
@@ -71,6 +75,7 @@ public class MenuBienvenida extends javax.swing.JFrame {
         jPanel1.add(BttnCreditos, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 440, 90, 30));
 
         BttnJugar.setBackground(new java.awt.Color(231, 203, 152));
+        BttnJugar.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         BttnJugar.setForeground(new java.awt.Color(0, 0, 0));
         BttnJugar.setText("Jugar");
         BttnJugar.setBorder(null);
